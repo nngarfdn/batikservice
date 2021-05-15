@@ -65,16 +65,7 @@ class BatikController extends Controller
 
     public function update(Request $request, $id)
     {
-
-        $product = new Batik();
-        $product->nama = $request->nama;
-        $product->asal = $request->asal;
-        $product->makna = $request->makna;
-        $product->foto = $request->foto;
-
-        
         $batik = $this->user->batiks()->find($id);
-
 
         if (!$batik) {
             return response()->json([
@@ -85,6 +76,8 @@ class BatikController extends Controller
 
         $updated = $batik->fill($request->all())
             ->save();
+
+
 
         if ($updated) {
             return response()->json([
@@ -120,4 +113,7 @@ class BatikController extends Controller
             ], 500);
         }
     }
+
+
+    
 }
